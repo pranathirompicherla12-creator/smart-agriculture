@@ -1,0 +1,161 @@
+/*================ ABOUT PAGE =================*/
+
+.about-page{
+
+    margin:0;
+    padding:0;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:url("../images/farmer.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+    min-height:100vh;
+}
+
+/* Dark overlay */
+
+.overlay{
+
+    background:rgba(0,0,0,.45);
+
+    width:100%;
+    min-height:100vh;
+}
+
+/* Main layout */
+
+.about-container{
+
+    width:92%;
+    margin:auto;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    min-height:88vh;
+}
+
+/* Left */
+
+.left-content{
+
+    width:36%;
+}
+
+.left-content h1{
+
+    color:white;
+
+    font-size:58px;
+
+    font-weight:bold;
+
+    line-height:1.2;
+}
+
+.green-line{
+
+    width:170px;
+
+    height:4px;
+
+    background:#2ecc71;
+
+    margin-top:25px;
+}
+
+/* Right */
+
+.right-content{
+
+    width:52%;
+}
+
+.right-content p{
+
+    color:white;
+
+    font-size:21px;
+
+    line-height:1.7;
+
+    margin-bottom:35px;
+
+    text-align:justify;
+}
+
+/* Footer */
+
+footer{
+
+    background:#1d3f83;
+
+    color:white;
+
+    text-align:center;
+
+    padding:22px;
+
+    font-size:22px;
+}
+/* ================= FIND YOUR CROP PAGE ================= */
+
+.crop-page{
+    min-height:100vh;
+    background-image:url("../images/findyourcrop.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+
+    padding:50px;
+}
+/*=============== FIND YOUR CROP ===============*/
+
+.form-box{
+    width:400px;
+    background:rgba(255,255,255,0.9);
+    padding:30px;
+    border-radius:10px;
+}
+
+.form-box form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.form-box input{
+    width:100%;
+    padding:12px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    box-sizing:border-box;
+}
+
+.form-box button{
+    width:100%;
+    padding:12px;
+    font-size:18px;
+    background:#2ecc71;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.form-box button:hover{
+    background:#27ae60;
+}

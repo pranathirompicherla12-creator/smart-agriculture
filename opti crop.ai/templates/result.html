@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f4f4;
+            margin:0;
+            padding:0;
+        }
+
+        .container{
+            width:90%;
+            margin:auto;
+            text-align:center;
+            padding:30px;
+        }
+
+        .result-box,
+        .chart-box{
+            background:white;
+            margin:25px auto;
+            padding:20px;
+            border-radius:12px;
+            width:80%;
+            box-shadow:0 0 12px rgba(0,0,0,0.15);
+        }
+
+        .result-box h2{
+            color:green;
+            font-size:35px;
+        }
+
+        canvas{
+            max-width:800px;
+            margin:auto;
+        }
+
+        .button{
+            display:inline-block;
+            margin-top:20px;
+            background:#28a745;
+            color:white;
+            padding:12px 25px;
+            text-decoration:none;
+            border-radius:6px;
+            font-weight:bold;
+        }
+
+        .button:hover{
+            background:#1f7d34;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="result-box">
+        <h1>🌱 Recommended Crop</h1>
+        <h2>{{ prediction }}</h2>
+    </div>
+
+    <div class="chart-box">
+        <h2>Top 3 Crop Confidence</h2>
+        <canvas id="barChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <h2>Your Input Values</h2>
+        <canvas id="radarChart"></canvas>
+    </div>
+
+    <a href="{{ url_for('findyourcrop') }}" class="button">
+        Predict Another Crop
+    </a>
+
+</div>
+
+<script>
+const labels = JSON.parse('{{ labels|tojson|safe }}');
+const scores = JSON.parse('{{ scores|tojson|safe }}');
+const user = JSON.parse('{{ user_values|tojson|safe }}');
+
+// ---------- BAR CHART ----------
+
+new Chart(document.getElementById("barChart"), {
+
+    type: "bar",
+
+    data: {
+        labels: labels,
+        datasets: [{
+            label: "Confidence %",
+            data: scores,
+            backgroundColor: [
+                "#4CAF50",
+                "#FFC107",
+                "#2196F3"
+            ]
+        }]
+    },
+
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100
+            }
+        }
+    }
+
+});
+
+// ---------- RADAR CHART ----------
+
+new Chart(document.getElementById("radarChart"), {
+
+    type: "radar",
+
+    data: {
+
+        labels: [
+            "Nitrogen",
+            "Phosphorous",
+            "Potassium",
+            "Temperature",
+            "Humidity",
+            "pH",
+            "Rainfall"
+        ],
+
+        datasets: [
+
+            {
+                label: "Input Values",
+                data: user,
+                backgroundColor: "rgba(54,162,235,0.2)",
+                borderColor: "#36A2EB",
+                borderWidth: 2,
+                pointBackgroundColor: "#36A2EB"
+            }
+
+        ]
+
+    },
+
+    options: {
+        responsive: true,
+        scales: {
+            r: {
+                beginAtZero: true
+            }
+        }
+    }
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiCrop - Find Your Crop</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <a href="{{ url_for('home') }}">Home</a>
+
+        <a href="{{ url_for('about') }}">About</a>
+
+        <a href="{{ url_for('findyourcrop') }}" class="active">
+            FindYourCrop
+        </a>
+
+    </nav>
+
+    <!-- =============== TITLE BAR ================= -->
+
+    <div class="crop-title">
+
+        <h1>Find Your Best Crop Here</h1>
+
+    </div>
+
+    <!-- ============== BACKGROUND ================= -->
+
+    <section class="crop-page">
+
+        <!-- Right Side Form -->
+
+        <div class="form-box">
+
+            <h2>Please Enter The Conditions Below</h2>
+
+            <form action="{{ url_for('predict') }}" method="POST">
+
+                <label>Nitrogen</label>
+
+                <input
+                    type="number"
+                    name="nitrogen"
+                    placeholder="nitrogen"
+                    required
+                >
+
+                <label>Phosphorous</label>
+
+                <input
+                    type="number"
+                    name="phosphorous"
+                    placeholder="phosphorous"
+                    required
+                >
+
+                <label>Potassium</label>
+
+                <input
+                    type="number"
+                    name="potassium"
+                    placeholder="potassium"
+                    required
+                >
+
+                <label>Temperature</label>
+<input
+    type="number"
+    name="temperature"
+    placeholder="Temperature"
+    min="0"
+    max="50"
+    step="1"
+    required
+>
+
+                <label>Humidity</label>
+
+               <input
+    type="number"
+    name="humidity"
+    min="0"
+    max="100"
+    step="1"
+    placeholder="humidity"
+    required
+>
+
+                <label>pH</label>
+
+                <input
+    type="number"
+    name="ph"
+    placeholder="pH"
+    min="0"
+    max="14"
+    step="1"
+    required
+>
+                <label>Rainfall</label>
+
+                <input
+   
+    type="number"
+    name="rainfall"
+    placeholder="Rainfall"
+    min="0"
+    max="300"
+    step="1"
+    required
+>
+
+<button type="submit" class="predict-btn">
+    Predict
+</button>
+
+            </form>
+
+            {% if prediction %}
+            <div class="prediction-box">
+
+                <h3>Recommended Crop</h3>
+
+                <div class="prediction-result">
+                    {{ prediction }}
+                </div>
+
+            </div>
+            {% endif %}
+           
+</div>
+
+</section>
+
+<footer class="footer">
+    © 2026 OptiCrop | All Rights Reserved
+</footer>
+
+</body>
+</html>
